@@ -105,9 +105,33 @@ li {
 .output ul li a {
     display: block;
 }
+.output ul li a:hover img {
+    transform: scale(1.2);
+}
+.img {
+    overflow: hidden;
+    position: relative;
+}
+.output ul li a .img::before {
+    content: '';
+    display: block;
+    background: #fff;
+    width: 100%;
+    height: 430px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    top: 0;
+    transition: all .4s;
+
+}
+.output ul li a:hover .img::before {
+    opacity: 0.4;
+}
 img {
     display: block;
     max-width: 100%;
     height: auto;
+    transition: all .4s;
 }
 </style>
