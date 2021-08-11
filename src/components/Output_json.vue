@@ -4,9 +4,11 @@
     <ul>
       <li v-for="(output, index) in outputs" :key=index>
       <a v-bind:href="output.link" target="_blank">
+          <div class="img"><img v-bind:src="output.img" v-bind:alt="output.title"></div>
           <div class="ttl">{{ output.title }}</div>
+          <div class="txt">{{ output.comment }}</div>
       </a>
-      <div class="txt">{{ output.comment }}</div>
+
       </li>
     </ul>
 
@@ -25,7 +27,7 @@ export default {
   },
   methods: {
       getOutput() {
-              this.axios.get('https://syutoito.com/manage/outputs_json.php')
+              this.axios.get('https://syutoito.site/manage/outputs_json.php')
               .then((response) => {
               console.log(response.data);
                   response.data.forEach(element => {
@@ -33,6 +35,7 @@ export default {
                           title: element.title,
                           comment: element.comment,
                           link: element.link,
+                          img: 'https://syutoito.site/manage/outputs/register/images/' + element.img
                       });
                   });
                   })
@@ -89,5 +92,22 @@ li {
     font-weight: bold;
     margin: 0px 10px;
 }
-
+.output ul {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+}
+.output ul li {
+    width: calc(50% - 10px);
+}
+.output ul li a {
+    display: block;
+}
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 </style>
