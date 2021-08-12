@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Output from '@/components/Output' //①import
+import Output from '@/components/Output_json' //①import
 import Profile from '@/components/Profile' //①import
 import Skills from '@/components/Skills_json' //①import
 import ImageList from '@/components/ImageList' //①import
