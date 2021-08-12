@@ -90,7 +90,7 @@ li {
 .ttl {
     font-size: 1.2em;
     font-weight: bold;
-    margin: 0px 10px;
+    margin: 10px 0;
 }
 .output ul {
     display: flex;
@@ -104,13 +104,21 @@ li {
 }
 .output ul li a {
     display: block;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
 }
 .output ul li a:hover img {
     transform: scale(1.2);
 }
+.output ul li:first-child img {
+    transform: unset;
+}
 .img {
     overflow: hidden;
     position: relative;
+    width: 100%;
+    height: 390px;
 }
 .output ul li a .img::before {
     content: '';
@@ -130,8 +138,9 @@ li {
 }
 img {
     display: block;
-    max-width: 100%;
-    height: auto;
+    height: 100%;
     transition: all .4s;
+    margin: auto;
+    transform: translateX(-40px);
 }
 </style>
