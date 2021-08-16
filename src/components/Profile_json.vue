@@ -7,15 +7,15 @@
     <div class="profile_txt">
       <h3> {{ name }} </h3>
       <p class="en"> {{ name_en }} </p>
-      <p v-html="text">{{ texts.text }}</p>
+      <p v-html="texts"></p>
       <ul>
-        <li v-for="(profile, index) in items" :key=index>
-            <div class="ttl">{{ item.title }}</div>
+        <li v-for="(profile, index) in profiles" :key=index>
+            <div class="ttl">生年月日</div>
             <div class="txt">{{ profile.birth }}</div>
-            <div class="ttl">{{ item.title }}</div>
-            <div class="txt">{{ profile.age }}</div>
-            <div class="ttl">{{ item.title }}</div>
-            <div class="txt">{{ profile.birthPlace }}</div>
+            <div class="ttl">年齢</div>
+            <div class="txt">{{ profile.age }}歳</div>
+            <div class="ttl">出身</div>
+            <div class="txt">福井県</div>
         </li>
       </ul>
     </div>
@@ -31,38 +31,22 @@ export default {
     return {
       name: '伊藤 秀人',
       name_en: 'Syuto Ito',
-      text: '元来からもの作りが好きで、これを活かして仕事にできるスキルを身に付けようと思い、2018年春頃よりWEB制作の学習を独学で開始する。<br>2018年11月にWEB制作会社へ実務未経験で入社。入社2ヵ月目でWEBサイトの下層ページ約6ページ分のデザイン・コーディングを約5日間で行う。<br>当初はWEBデザインがやりたいと考えていたが、業務でプログラミングにも触れていく中で、開発をやりたいという思いが強くなる。<br>将来的にはフロントエンド、バックエンド両方をカバーできるエンジニアになりたいと考えており、PHPは一人称での開発が可能、また現在Vue.jsを独学にて学習中。<br>未経験での入社だったため当初は苦労したが、その環境を楽しむことでスキルを高めることができ、困難であればあるほど成長できるタイプであると自負している。',
-      items: [
-        { title: '生年月日', detail: '1989/01/11' },
-        { title: '年齢', detail: '31歳' },
-        { title: '出身', detail: '福井県' },
-        { title: '好きな映画', detail: '「青い春」、「パーマネントバケーション」、「ストレンジャー・ザン・パラダイス」' }
+      texts: '',
+      profiles: [],
+      items: [{ title: '好きな映画', detail: '「青い春」、「パーマネントバケーション」、「ストレンジャー・ザン・パラダイス」' }
       ],
-    }
-  }
-}
-
-export default {
-  name: 'Profile',
-  data () {
-    return {
-      texts: [],
-      profile: []
     }
   },
   methods: {
       getProfile() {
-              this.axios.get('http://syuto-ito.boo.jp/manage/json.php')
+              this.axios.get('https://syutoito.site/manage/profiles_json.php')
               .then((response) => {
-              console.log(response.data);
                   response.data.forEach(element => {
-                      this.texts.push({
-                          text: element.text,
-                      });
+                  console.log(element);
+                      this.texts = element.texts;
                       this.profiles.push({
                           birth: element.birth,
                           age: element.age,
-                          birthPlace: element.birthPlace,
                       });
                   });
                   })
